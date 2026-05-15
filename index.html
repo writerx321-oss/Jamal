@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jamal Dwi Atmajaya | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    html { scroll-behavior: smooth; }
+
+        /* Base style */
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      color: #6b7280; /* gray */
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    /* Hover trigger animasi */
+    .social-icon:hover {
+      animation: bounceGlow 0.6s forwards;
+    }
+
+    /* Warna spesifik */
+    .social-icon.instagram:hover {
+      color: #E1306C;
+      box-shadow: 0 0 15px rgba(225, 48, 108, 0.6);
+    }
+
+    .social-icon.linkedin:hover {
+      color: #0077B5;
+      box-shadow: 0 0 15px rgba(0, 119, 181, 0.6);
+    }
+
+    /* KEYFRAMES animasi */
+    @keyframes bounceGlow {
+      0% {
+        transform: scale(1) translateY(0);
+      }
+      30% {
+        transform: scale(1.2) translateY(-8px);
+      }
+      60% {
+        transform: scale(1.1) translateY(2px);
+      }
+      100% {
+        transform: scale(1.15) translateY(-4px);
+      }
+    }
+
+    /* Portfolio scroll styling */
+    #portfolio .portfolio-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 1.5rem;
+      padding-bottom: 1rem;
+    }
+    #portfolio .portfolio-container::-webkit-scrollbar { height: 8px; }
+    #portfolio .portfolio-container::-webkit-scrollbar-thumb {
+      background-color: #facc15; border-radius: 9999px;
+    }
+    #portfolio .portfolio-container::-webkit-scrollbar-track { background: #1f2937; }
+
+    /* Style untuk animasi dropdown */
+    #dropdown-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out;
+    }
+
+    #dropdown-content.show {
+      max-height: 200px; /* Menentukan batasan max height dropdown */
+      opacity: 1;
+    }
+
+    /* Styling untuk tombol */
+    #dropdown-toggle {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 w-full bg-black/80 backdrop-blur z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="font-bold text-lg md:text-xl">Quality Control Technician</h1>
+      <nav class="hidden md:flex gap-6 text-gray-400 text-sm">
+        <a href="#home" class="hover:text-yellow-400">Home</a>
+        <a href="#about" class="hover:text-yellow-400">About</a>
+        <a href="#experience" class="hover:text-yellow-400">Experience</a>
+        <a href="#skills" class="hover:text-yellow-400">Skills</a>
+        <a href="#portfolio" class="hover:text-yellow-400">Work</a>
+        <a href="#contact" class="hover:text-yellow-400">Contact</a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center gap-10 px-6 md:px-16 pt-24 max-w-7xl mx-auto">
+    <div class="flex-1 text-center md:text-left">
+      <p class="text-yellow-400">HELLO!</p>
+      <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
+        I'm <span class="text-yellow-400">Jamal Dwi Atmajaya</span>
+      </h1>
+      <p class="text-gray-300 mt-4 max-w-xl">
+        Quality Control Technician specializing in Food Safety Systems (HACCP, GMP, SSOP), passionate about ensuring product quality and safety.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-4 justify-center md:justify-start">
+        <a href="https://mail.google.com/mail/u/0/?fs=1&to=jamalatmajaya@gmail.com&tf=cm&su=We%20Are%20Interest%20in%20Your%20Profile" 
+           class="bg-yellow-400 text-black px-6 py-2 rounded-full hover:bg-yellow-300 hover:scale-105 transition duration-200">
+          Hire Me
+        </a>
+        <a href="#portfolio" 
+           class="border border-gray-500 px-6 py-2 rounded-full hover:border-yellow-400 hover:text-yellow-400 hover:scale-105 transition duration-200">
+          My Work
+        </a>
+      </div>
+    </div>
+    <div class="flex-1 flex justify-center">
+      <img src="/masjamal.png" 
+           class="w-64 sm:w-80 md:w-[400px] rounded-xl object-cover" alt="Profile Picture"/>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="max-w-7xl mx-auto px-6 md:px-16 py-20 grid md:grid-cols-2 gap-10 items-center">
+    <img src="/masjamal.png" 
+        class="w-full rounded-xl" alt="About Me"/>
+    <div>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">About Me</h2>
+        <p class="text-gray-400 mb-4">A resilient and optimistic individual with strong communication skills, passionate about food technology and digitalization.</p>
+        
+        <!-- Tombol untuk menampilkan dropdown -->
+        <button id="dropdown-toggle" class="text-yellow-400 font-semibold hover:text-yellow-300 mt-4">
+            Show More
+        </button>
+        
+        <!-- Bagian dropdown yang tersembunyi awalnya -->
+        <div id="dropdown-content" class="mt-4 space-y-2 text-gray-300 text-sm md:text-base">
+            <ul>
+                <li><b>Name:</b> Jamal Dwi Atmajaya</li>
+                <li><b>Phone:</b> 089612194861</li>
+                <li><b>Location:</b> Sidoarjo, East Java, Indonesia</li>
+                <li><b>Education:</b> Universitas Airlangga (GPA 3.58/4.00)</li>
+            </ul>
+        </div>
+    </div>
+  </section>
+
+  <!-- SCRIPT untuk toggle dropdown -->
+  <script>
+    document.getElementById('dropdown-toggle').addEventListener('click', function() {
+      const dropdownContent = document.getElementById('dropdown-content');
+      // Toggle visibilitas dropdown dengan transisi smooth
+      dropdownContent.classList.toggle('show');
+      
+      // Ubah teks tombol sesuai dengan status dropdown
+      if (dropdownContent.classList.contains('show')) {
+        this.textContent = 'Show Less';  // Teks ketika dropdown terbuka
+      } else {
+        this.textContent = 'Show More';  // Teks ketika dropdown tertutup
+      }
+    });
+  </script>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="max-w-7xl mx-auto px-6 md:px-16 py-20">
+    <h2 class="text-2xl md:text-3xl font-bold mb-8">Experience</h2>
+    <div class="flex gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-gray-800 snap-x snap-mandatory">
+      <!-- Experience Card Template -->
+      <div class="border border-gray-800 p-5 rounded-xl flex-shrink-0 snap-start min-w-[280px] sm:min-w-[320px] md:min-w-[350px] lg:min-w-[400px] w-[calc(100%-20px)]">
+        <h3 class="font-semibold">Quality Control Technician - PT. Tunas Baru Lampung</h3>
+        <p class="text-gray-400 text-sm">2025 - Present Sidoarjo, Indonesia</p>
+        <p class="text-gray-300 mt-2 text-sm">Monitoring product quality and verifying production data to ensure compliance.</p>
+      </div>
+
+      <div class="border border-gray-800 p-5 rounded-xl flex-shrink-0 snap-start min-w-[280px] sm:min-w-[320px] md:min-w-[350px] lg:min-w-[400px] w-[calc(100%-20px)]">
+        <h3 class="font-semibold">Intern - PT. Grahamakmur Ciptapratama</h3>
+        <p class="text-gray-400 text-sm">2024 Banyuwangi, Indonesia</p>
+        <p class="text-gray-300 mt-2 text-sm">Analyzed HACCP implementation and identified 7 CCPs in shrimp processing.</p>
+      </div>
+      
+      <div class="border border-gray-800 p-5 rounded-xl flex-shrink-0 snap-start min-w-[280px] sm:min-w-[320px] md:min-w-[350px] lg:min-w-[400px] w-[calc(100%-20px)]">
+        <h3 class="font-semibold">Intern - PT. Marinal Indoprima</h3>
+        <p class="text-gray-400 text-sm">Sumenep, Indonesia</p>
+        <p class="text-gray-300 mt-2 text-sm">Sorting and classifying anchoives based on quality and size</p>
+      </div>
+
+      <div class="border border-gray-800 p-5 rounded-xl flex-shrink-0 snap-start min-w-[280px] sm:min-w-[320px] md:min-w-[350px] lg:min-w-[400px] w-[calc(100%-20px)]">
+        <h3 class="font-semibold">Project Leader - Airlangga Maritime Week</h3>
+        <p class="text-gray-400 text-sm">2023 Surabaya, Indonesia</p>
+        <p class="text-gray-300 mt-2 text-sm">Led 70 members and achieved 70+ participants nationwide.</p>
+      </div>
+      
+      <div class="border border-gray-800 p-5 rounded-xl flex-shrink-0 snap-start min-w-[280px] sm:min-w-[320px] md:min-w-[350px] lg:min-w-[400px] w-[calc(100%-20px)]">
+        <h3 class="font-semibold">Campus Liasion & Volunteer Coordinator - Kahforward Surabaya</h3>
+        <p class="text-gray-400 text-sm">Surabaya, Indonesia</p>
+        <p class="text-gray-300 mt-2 text-sm">Ensure smooth communication between the university and organizing committee</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Organizational Experience-->
+  <section id="experience" class="max-w-7xl mx-auto px-6 md:px-16 py-20">
+    <h2 class="text-2xl md:text-3xl font-bold mb-8"> Organizational Experience</h2>
+    <div class="flex gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-gray-800 snap-x snap-mandatory">
+      <!-- Experience Card Template -->
+      <div class="border border-gray-800 p-5 rounded-xl flex-shrink-0 snap-start min-w-[280px] sm:min-w-[320px] md:min-w-[350px] lg:min-w-[400px] w-[calc(100%-20px)]">
+        <h3 class="font-semibold">Badan Eksekutif Mahasiswa Universitas Airlangga - Airlangga University</h3>
+        <p class="text-gray-400 text-sm">Minister of the Ministry of Media and Information</p>
+        <p class="text-gray-300 mt-2 text-sm">Designing and implementing the organization's public communication strategies accross various media channels</p>
+      </div>
+
+      <div class="border border-gray-800 p-5 rounded-xl flex-shrink-0 snap-start min-w-[280px] sm:min-w-[320px] md:min-w-[350px] lg:min-w-[400px] w-[calc(100%-20px)]">
+        <h3 class="font-semibold">Sie Kerohanian Islam - Airlangga University</h3>
+        <p class="text-gray-400 text-sm">Head of Media and Information Departement</p>
+        <p class="text-gray-300 mt-2 text-sm">Planning branding and succesfully increasing social media insights consistently</p>
+      </div>
+      
+      <div class="border border-gray-800 p-5 rounded-xl flex-shrink-0 snap-start min-w-[280px] sm:min-w-[320px] md:min-w-[350px] lg:min-w-[400px] w-[calc(100%-20px)]">
+        <h3 class="font-semibold">Badan Eksekutif Mahasiswa Fakultas Perikanan dan Kelautan Universitas Airlangga - Airlangga University</h3>
+        <p class="text-gray-400 text-sm">Staff at Media and Information Departement</p>
+        <p class="text-gray-300 mt-2 text-sm">Delivering information through social media in an engaging and easily undestandable way</p>
+      </div>
+
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="max-w-7xl mx-auto px-6 md:px-16 py-12">
+    <h2 class="text-2xl md:text-3xl font-bold mb-6">Skills</h2>
+    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <!-- Skill Item -->
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">HACCP Implementation</h3>
+        <p class="text-gray-400 text-sm mt-2">Identify hazards and control critical food safety risks</p>
+      </div>
+  
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Good Manufacturing Practice (GMP)</h3>
+        <p class="text-gray-400 text-sm mt-2">Ensure safe and consistent food production processes</p>
+      </div>
+  
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Quality Control</h3>
+        <p class="text-gray-400 text-sm mt-2">Monitor product quality throughout production stages consistently</p>
+      </div>
+  
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Sanitation Standard Operating Procedures (SSOP)</h3>
+        <p class="text-gray-400 text-sm mt-2">Maintain hygiene standards in food production environment</p>
+      </div>
+  
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Food Processing Knowledge</h3>
+        <p class="text-gray-400 text-sm mt-2">Understand seafood processing from raw material to export</p>
+      </div>
+  
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Food Technology Research</h3>
+        <p class="text-gray-400 text-sm mt-2">Develop innovative solutions for food freshness monitoring systems
+        </p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Content Creation</h3>
+        <p class="text-gray-400 text-sm mt-2">Design engaging visual and written content for audience
+        </p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Graphic Desain</h3>
+        <p class="text-gray-400 text-sm mt-2">Create visual assets using Photoshop and Canva tools
+        </p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Team Collaboration</h3>
+        <p class="text-gray-400 text-sm mt-2">Work efficiently within teams across multiple projects
+        </p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Microsoft Excel</h3>
+        <p class="text-gray-400 text-sm mt-2">Analyze and organize data for reporting purposes
+        </p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Power Point Presentation</h3>
+        <p class="text-gray-400 text-sm mt-2">Create clear and impactful professional presentations
+        </p>
+      </div>
+      
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Digital Branding</h3>
+        <p class="text-gray-400 text-sm mt-2">
+          Build and manage brand identity across digital platforms          
+        </p>
+      </div>
+      
+      <div class="bg-gray-900 p-6 rounded-lg flex flex-col gap-2">
+        <h3 class="text-yellow-400 font-semibold">Product Development</h3>
+        <p class="text-gray-400 text-sm mt-2">
+          Create and test food-related innovations and applications          
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="max-w-7xl mx-auto px-6 md:px-16 py-20">
+    <h2 class="text-2xl md:text-3xl font-bold mb-8">My Work & Achievement</h2>
+    <div class="portfolio-container">
+      <div class="flex gap-4 overflow-x-auto pb-2">
+
+        <div class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2">
+
+          <!-- Card -->
+          <div class="w-[280px] flex-shrink-0 snap-start border border-gray-800 rounded-xl overflow-hidden bg-gray-900 flex flex-col">
+            
+            <img src="/filmproject.jpg" 
+                 alt="Project 1" 
+                 class="w-full h-auto aspect-[4/3] object-cover"/>
+        
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="font-semibold text-lg">Smart Halochromic Film Project</h3>
+        
+              <p class="text-gray-400 text-sm mt-1">
+                Natural film detects shrimp freshness
+              </p>
+        
+              <a href="/film.html" target="_blank"
+                 class="mt-3 text-sm bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300 text-center">
+                 View Documentation
+              </a>
+            </div>
+          </div>
+        
+          <!-- Card -->
+          <div class="w-[280px] flex-shrink-0 snap-start border border-gray-800 rounded-xl overflow-hidden bg-gray-900 flex flex-col">
+            
+            <img src="/marketing.avif" 
+                 alt="Project 2" 
+                 class="w-full h-auto aspect-[4/3] object-cover"/>
+        
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="font-semibold text-lg">Digital Branding Strategy</h3>
+        
+              <p class="text-gray-400 text-sm mt-1">
+                Manage branding and increased engagement across platforms
+              </p>
+        
+              <a href="/marketing.html" target="_blank"
+                 class="mt-3 text-sm bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300 text-center">
+                 View Documentation
+              </a>
+            </div>
+          </div>
+        
+          <!-- Card -->
+          
+          <!-- Card -->
+          <div class="w-[280px] flex-shrink-0 snap-start border border-gray-800 rounded-xl overflow-hidden bg-gray-900 flex flex-col">
+            
+            <img src="/foodsafety.avif" 
+                 alt="Project 3" 
+                 class="w-full h-auto aspect-[4/3] object-cover"/>
+        
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="font-semibold text-lg">Food Safety System</h3>
+        
+              <p class="text-gray-400 text-sm mt-1">
+                Completed training FSSC 22000 version 6.0
+              </p>
+        
+              <a href="/JamalFSSC.pdf" target="_blank"
+                 class="mt-3 text-sm bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300 text-center">
+                 View Certificate
+              </a>
+            </div>
+          </div>
+          <!-- Card -->
+          <div class="w-[280px] flex-shrink-0 snap-start border border-gray-800 rounded-xl overflow-hidden bg-gray-900 flex flex-col">
+            
+            <img src="/haccp.jpg" 
+                 alt="Project 3" 
+                 class="w-full h-auto aspect-[4/3] object-cover"/>
+        
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="font-semibold text-lg">HACCP Certification</h3>
+        
+              <p class="text-gray-400 text-sm mt-1">
+                Completed training HACCP (Hazard Analysis and Critical Control Point)
+              </p>
+        
+              <a href="/JamalHACCP.pdf" target="_blank"
+                 class="mt-3 text-sm bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300 text-center">
+                 View Certificate
+              </a>
+            </div>
+          </div>
+          <!-- Card -->
+          <div class="w-[280px] flex-shrink-0 snap-start border border-gray-800 rounded-xl overflow-hidden bg-gray-900 flex flex-col">
+            
+            <img src="/gmp.avif" 
+                 alt="Project 3" 
+                 class="w-full h-auto aspect-[4/3] object-cover"/>
+        
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="font-semibold text-lg">GMP Certification</h3>
+        
+              <p class="text-gray-400 text-sm mt-1">
+                Completed training GMP (Good Manufacturing Practices)
+              </p>
+        
+              <a href="/JamalGMP.pdf" target="_blank"
+                 class="mt-3 text-sm bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300 text-center">
+                 View Certificate
+              </a>
+            </div>
+          </div>
+          <!-- Card -->
+          <div class="w-[280px] flex-shrink-0 snap-start border border-gray-800 rounded-xl overflow-hidden bg-gray-900 flex flex-col">
+            
+            <img src="/iso.avif" 
+                 alt="Project 3" 
+                 class="w-full h-auto aspect-[4/3] object-cover"/>
+        
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="font-semibold text-lg">Food Safety Management</h3>
+        
+              <p class="text-gray-400 text-sm mt-1">
+                Completed training ISO 22000:2018 (Food Safety Management System)
+              </p>
+        
+              <a href="/Jamal Dwi Atmajaya.pdf" target="_blank"
+                 class="mt-3 text-sm bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300 text-center">
+                 View Certificate
+              </a>
+            </div>
+          </div>
+        
+        </div>
+    </div>
+  </section>
+
+  <footer class="bg-white border-t py-6 text-sm text-gray-500">
+
+    <div class="max-w-6xl mx-auto px-4">
+  
+      <!-- TOP: Data + Sosmed -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+  
+        <!-- Kiri: Data diri -->
+        <div class="text-left space-y-1" id="contact">
+          <p>Email: jamalatmajaya@gmail.com</p>
+          <p>Location: Sidoarjo, East Java, Indonesia</p>
+          <p>Phone: 089612194861</p>
+        </div>
+  
+        <!-- Kanan: Sosial Media -->
+        <div class="flex gap-6 text-2xl md:justify-end">
+          <a href="https://instagram.com/jamalatmajaya" target="_blank" class="social-icon instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://linkedin.com/in/jamalatmajaya" target="_blank" class="social-icon linkedin">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+  
+      </div>
+  
+      <!-- Divider -->
+      <div class="border-t mt-6 pt-4 text-center">
+        <p>© 2026 Jamal Dwi Atmajaya</p>
+      </div>
+  
+    </div>
+  
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Portfolio - Jamal Dwi Atmajaya</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; }
+
+    a { transition: all 0.2s; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-thumb { background-color: #facc15; border-radius: 9999px; }
+    ::-webkit-scrollbar-track { background: #1f2937; }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+    }
+
+    /* Hamburger */
+    #menu-toggle { display: none; }
+
+    .hamburger {
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 60;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background-color: #facc15;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+      transform-origin: center;
+    }
+
+    /* Animasi hamburger */
+    #menu-toggle:checked + .hamburger span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    #menu-toggle:checked + .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    #menu-toggle:checked + .hamburger span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* DROPDOWN FIX */
+    nav {
+      position: absolute;
+      top: 100%;
+      right: 1.5rem;
+      background-color: rgba(0,0,0,0.95);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      min-width: 160px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+
+      display: flex;
+      flex-direction: column;
+
+      /* Hidden state */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      pointer-events: none;
+
+      transition: all 0.3s ease;
+    }
+
+    /* Saat aktif */
+    #menu-toggle:checked ~ nav {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    nav a {
+      padding: 0.75rem 1rem;
+      color: #facc15;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    nav a:hover {
+      background-color: #1f2937;
+    }
+
+    /* Desktop mode */
+    @media(min-width: 768px) {
+      nav {
+        position: static;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        pointer-events: auto;
+        flex-direction: row;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .hamburger { display: none; }
+
+      nav a:hover {
+        background: transparent;
+        color: #facc15;
+      }
+    }
+
+    /* Section styling */
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid #374151;
+    }
+
+    section img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    section img:hover {
+      transform: scale(1.05);
+    }
+
+    h2 {
+      color: #facc15;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #d1d5db;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="bg-black/90 backdrop-blur shadow-md px-6 py-4 flex justify-between items-center">
+  
+  <!-- Logo -->
+  <a href="/index.html" class="text-yellow-400 font-bold text-lg md:text-xl flex items-center gap-2">
+    🏠 Jamal Dwi Atmajaya
+  </a>
+
+  <!-- Toggle -->
+  <input type="checkbox" id="menu-toggle">
+
+  <!-- Hamburger -->
+  <label for="menu-toggle" class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <!-- NAV -->
+  <nav onclick="document.getElementById('menu-toggle').checked = false;">
+    <a href="/film.html">Film Project</a>
+    <a href="/marketing.html">Digital Branding</a>
+    <a href="/maritimeweek.html">Maritime Week</a>
+  </nav>
+
+</header>
+
+<main class="pt-28 max-w-7xl mx-auto px-6 md:px-16">
+  
+  <section id="project1" class="space-y-4">
+
+    <!-- Wrapper scroll horizontal -->
+    <div class="w-full overflow-x-auto">
+      
+      <!-- Container gambar -->
+      <div class="flex items-center gap-6 w-max px-4 mx-auto">
+        
+        <img 
+          src="/Filmproject (2).jpg" 
+          class="h-[80vh] w-[250px] object-contain flex-shrink-0"
+        >
+  
+        <img 
+          src="/Filmproject (2).jpg" 
+          class="h-[80vh] w-[250px] object-contain flex-shrink-0"
+        >
+  
+        <img 
+          src="/Filmproject.jpg" 
+          class="h-[80vh] w-[250px] object-contain flex-shrink-0"
+        >
+  
+      </div>
+  
+    </div>
+  
+    <!-- Deskripsi -->
+    <div class="max-w-2xl mx-auto text-center px-4">
+      <h2 class="text-yellow-400 text-2xl font-semibold mb-2">
+        Smart Halochromic Film Project
+      </h2>
+  
+      <p class="text-gray-300 leading-relaxed">
+        Developed eco-friendly halochromic film using natural materials
+        to indicate shrimp freshness through visible color changes accurately
+      </p>
+    </div>
+  
+  </section>
+
+</main>
+
+<footer class="text-center py-6 text-gray-500 text-sm">
+  © 2026 Jamal Dwi Atmajaya
+</footer>
+
+</body>
+</html>
